@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "before:init": "npm run lint"
+  },
+  "git": {
+    "commitArgs": ["-S"],
+    "tagArgs": ["-s"]
+  },
+  "npm": {
+    "publish": true
+  },
+  "github": {
+    "release": true
+  }
+}
