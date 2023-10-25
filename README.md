@@ -2,7 +2,7 @@
 
 Transform a Google Photos export (created with [Takeout](https://takeout.google.com/)) into a more useful folder(s) of images.
 
-The output is folder of files (with folder structure retained) suitable for use as a traditional photo library, where there are no JSON files, no "edited" versions, and the files have suitable `Date Created` timestamps.
+The output is a folder of files (with folder structure retained) suitable for use as a traditional photo library, where there are no JSON files, no "edited" versions, and the files have suitable `Date Created` timestamps.
 
 For example the following files within the source directory:
 
