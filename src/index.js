@@ -29,7 +29,13 @@ const normalizeString = (str) => {
   return str.replace(/\u0027/g, '_')
 }
 
-const copyMediaFiles = async (srcFolder, destFolder) => {
+const copyFile = async (src, dest, timestamp) => {
+  await fse.copy(src, dest)
+  fs.utimesSync(dest, timestamp, timestamp)
+  console.log(`Copied ${path.basename(dest)} with timestamp ${timestamp.toLocaleDateString()}`)
+}
+
+const processFolder = async (srcFolder, destFolder) => {
   const files = await fse.readdir(srcFolder)
 
   for (const file of files) {
@@ -37,17 +43,18 @@ const copyMediaFiles = async (srcFolder, destFolder) => {
     const fileStat = await fse.stat(filePath)
 
     if (fileStat.isDirectory()) {
-      await copyMediaFiles(filePath, path.join(destFolder, file))
+      await processFolder(filePath, path.join(destFolder, file))
       continue
     }
 
     if (!file.endsWith('.json')) continue
 
     const metadata = await fse.readJson(filePath)
+    const { title, photoTakenTime } = metadata
 
-    if (!metadata.title || !metadata.photoTakenTime?.timestamp) continue
+    if (!title || !photoTakenTime?.timestamp) continue
 
-    const normalizedTitle = normalizeString(metadata.title.split('.')[0])
+    const normalizedTitle = normalizeString(title.split('.')[0])
     const candidates = files.filter((f) => {
       const normalizedFile = normalizeString(f.split('.')[0])
       return f !== file && (normalizedFile.startsWith(normalizedTitle) || normalizedTitle.startsWith(normalizedFile))
@@ -60,22 +67,20 @@ const copyMediaFiles = async (srcFolder, destFolder) => {
     let destMediaFilePath = path.join(destFolder, mediaFileToCopy)
 
     if (isImageFile(mediaFileToCopy)) {
-      destMediaFilePath = path.join(destFolder, metadata.title)
+      destMediaFilePath = path.join(destFolder, title)
     }
 
-    await fse.copy(srcMediaFilePath, destMediaFilePath)
-
-    const timestamp = new Date(metadata.photoTakenTime.timestamp * 1000)
-    fs.utimesSync(destMediaFilePath, timestamp, timestamp)
-    console.log(`Copied ${path.basename(destMediaFilePath)} with timestamp ${timestamp.toLocaleDateString()}`)
+    const timestamp = new Date(photoTakenTime.timestamp * 1000)
+    await copyFile(srcMediaFilePath, destMediaFilePath, timestamp)
   }
 }
 
 const run = async () => {
   const { src: srcFolder, dest: destFolder } = argv
+
   try {
     await fse.ensureDir(destFolder)
-    await copyMediaFiles(srcFolder, destFolder)
+    await processFolder(srcFolder, destFolder)
   } catch (err) {
     console.error(err)
   }
