@@ -1,7 +1,7 @@
 {
   "name": "gphotos-takeout-repair",
   "version": "1.0.0",
-  "description": "CLI tool to transform a Google Photos export into a useful folder of files.",
+  "description": "Transform a Google Photos export (created with Takeout) into a useful folder(s) of files.",
   "author": "Alec Rust <me@alecrust.com>",
   "license": "ISC",
   "main": "src/index.js",

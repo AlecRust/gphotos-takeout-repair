@@ -1,22 +1,25 @@
 # gphotos-takeout-repair [![CI](https://github.com/AlecRust/gphotos-takeout-repair/actions/workflows/ci.yml/badge.svg)](https://github.com/AlecRust/gphotos-takeout-repair/actions/workflows/ci.yml) [![npm version](https://badge.fury.io/js/gphotos-takeout-repair.svg)](https://badge.fury.io/js/gphotos-takeout-repair)
 
-Transform a Google Photos export (created with [Takeout](https://takeout.google.com/)) into a more useful folder(s) of images.
+Transform a Google Photos export (created with [Takeout](https://takeout.google.com/)) into a useful folder(s) of files.
 
 The output is a folder of files (with folder structure retained) suitable for use as a traditional photo library, where there are no JSON files, no "edited" versions, and the files have suitable `Date Created` timestamps.
 
-For example the following files within the source directory:
+For example given the following files in the source directory:
 
 | Filename            | Date Created        | Description                   |
 | ------------------- | ------------------- | ----------------------------- |
 | IMG_0001-edited.JPG | Takeout export date | Edited version of the file    |
 | IMG_0001.JPG        | Takeout export date | Original version of the file  |
 | IMG_0001.json       | Takeout export date | Metadata information for file |
+| IMG_0002.mp4        | Takeout export date | Original version of the file  |
+| IMG_0002.json       | Takeout export date | Metadata information for file |
 
-Will result in the following file output to the destination directory:
+The output in the destination directory will be:
 
-| Filename     | Date Created                 | Description                |
-| ------------ | ---------------------------- | -------------------------- |
-| IMG_0001.JPG | "Photo taken" date from JSON | Edited version of the file |
+| Filename     | Date Created                 | Description                  |
+| ------------ | ---------------------------- | ---------------------------- |
+| IMG_0001.JPG | "Photo taken" date from JSON | Edited version of the file   |
+| IMG_0002.mp4 | "Photo taken" date from JSON | Original version of the file |
 
 ## Features
 
