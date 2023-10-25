@@ -67,7 +67,7 @@ const copyMediaFiles = async (srcFolder, destFolder) => {
 
     const timestamp = new Date(metadata.photoTakenTime.timestamp * 1000)
     fs.utimesSync(destMediaFilePath, timestamp, timestamp)
-    console.log(`${path.basename(destMediaFilePath)} timestamp set to ${timestamp.toLocaleDateString()}`)
+    console.log(`Copied ${path.basename(destMediaFilePath)} with timestamp ${timestamp.toLocaleDateString()}`)
   }
 }
 
