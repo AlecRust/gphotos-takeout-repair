@@ -22,7 +22,7 @@ const argv = yargs(hideBin(process.argv))
 
 const isImageFile = (filename) => {
   const ext = path.extname(filename).toLowerCase()
-  return ['.jpg', '.jpeg', '.png'].includes(ext)
+  return ext === '.jpg' || ext === '.jpeg' || ext === '.png'
 }
 
 const normalizeString = (str) => {
@@ -45,11 +45,11 @@ const copyMediaFiles = async (srcFolder, destFolder) => {
 
     const metadata = await fse.readJson(filePath)
 
-    if (!metadata.title || !metadata.photoTakenTime || !metadata.photoTakenTime.timestamp) continue
+    if (!metadata.title || !metadata.photoTakenTime?.timestamp) continue
 
-    let normalizedTitle = normalizeString(metadata.title.split('.')[0])
-    let candidates = files.filter((f) => {
-      let normalizedFile = normalizeString(f.split('.')[0])
+    const normalizedTitle = normalizeString(metadata.title.split('.')[0])
+    const candidates = files.filter((f) => {
+      const normalizedFile = normalizeString(f.split('.')[0])
       return f !== file && (normalizedFile.startsWith(normalizedTitle) || normalizedTitle.startsWith(normalizedFile))
     })
 
@@ -71,10 +71,14 @@ const copyMediaFiles = async (srcFolder, destFolder) => {
   }
 }
 
-const srcFolder = argv.src
-const destFolder = argv.dest
+const run = async () => {
+  const { src: srcFolder, dest: destFolder } = argv
+  try {
+    await fse.ensureDir(destFolder)
+    await copyMediaFiles(srcFolder, destFolder)
+  } catch (err) {
+    console.error(err)
+  }
+}
 
-fse
-  .ensureDir(destFolder)
-  .then(() => copyMediaFiles(srcFolder, destFolder))
-  .catch((err) => console.error(err))
+run()

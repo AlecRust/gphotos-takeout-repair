@@ -1,8 +1,9 @@
 # gphotos-takeout-repair [![CI](https://github.com/AlecRust/gphotos-takeout-repair/actions/workflows/ci.yml/badge.svg)](https://github.com/AlecRust/gphotos-takeout-repair/actions/workflows/ci.yml) [![npm version](https://badge.fury.io/js/gphotos-takeout-repair.svg)](https://badge.fury.io/js/gphotos-takeout-repair)
 
-Transform a Google Photos export (created with [Takeout](https://takeout.google.com/)) into a useful folder(s) of files.
+Transform a Google Photos export (created with [Takeout](https://takeout.google.com/)) into a useful directory of files.
 
-The output is a folder of files (with folder structure retained) suitable for use as a traditional photo library, where there are no JSON files, no "edited" versions, and the files have suitable `Date Created` timestamps.
+The output is a directory of files (with folder structure retained) suitable for use as a traditional photo library, where
+the files have suitable `Date Created` timestamps, there are no JSON files, and no duplicate "edited" versions of files.
 
 For example given the following files in the source directory:
 
@@ -24,7 +25,7 @@ The output in the destination directory will be:
 ## Features
 
 - Copies files to destination directory using timestamp from the JSON file
-- Selects the best version to copy i.e. "edited" version over original
+- Copies the (usually best) "edited" version where possible to prevent duplicates
 - Retains source directory folder structure to handle Takeout's exporting of albums
 - Handles some common Takeout export filename and encoding issues
 
