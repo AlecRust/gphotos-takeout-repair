@@ -138,6 +138,29 @@ describe('Tests', () => {
     )
   })
 
+  it('retains non-image filenames', async () => {
+    await runTest(
+      [
+        { name: 'IMG_0001.MOV.mp4' },
+        {
+          name: 'IMG_0001.MOV.json',
+          content: {
+            title: 'IMG_0001.MOV',
+            photoTakenTime: {
+              timestamp: '86400',
+            },
+          },
+        },
+      ],
+      [
+        {
+          name: 'IMG_0001.MOV.mp4',
+          timestamp: '86400',
+        },
+      ],
+    )
+  })
+
   it('handles filename apostrophe replacement', async () => {
     await runTest(
       [
