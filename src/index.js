@@ -48,7 +48,18 @@ const processFolder = async (srcFolder, destFolder) => {
 
     if (candidates.length === 0) continue
 
-    const mediaFileToCopy = candidates.find((f) => f.includes('-edited')) || candidates[0]
+    const mediaType = path.extname(title).toLowerCase()
+
+    const mediaFileToCopy =
+      candidates.find((f) => {
+        return f.toLowerCase().includes(mediaType) && f.includes('-edited')
+      }) ||
+      candidates.find((f) => {
+        return f.toLowerCase().includes(mediaType)
+      })
+
+    if (!mediaFileToCopy) continue
+
     const srcMediaFilePath = path.join(srcFolder, mediaFileToCopy)
     let destMediaFilePath = path.join(destFolder, mediaFileToCopy)
 

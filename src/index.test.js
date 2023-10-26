@@ -183,6 +183,55 @@ describe('Tests', () => {
       ],
     )
   })
+
+  it('handles different file types with similar filenames', async () => {
+    await runTest(
+      [
+        {
+          name: 'IMG_0001-edited.JPG',
+          filesize: '10',
+        },
+        {
+          name: 'IMG_0001.JPG.jpeg',
+          filesize: '20',
+        },
+        {
+          name: 'IMG_0001.JPG.json',
+          content: {
+            title: 'IMG_0001.JPG',
+            photoTakenTime: {
+              timestamp: '86400',
+            },
+          },
+        },
+        {
+          name: 'IMG_0001.MOV.mp4',
+          filesize: '30',
+        },
+        {
+          name: 'IMG_0001.MOV.json',
+          content: {
+            title: 'IMG_0001.MOV',
+            photoTakenTime: {
+              timestamp: '86400',
+            },
+          },
+        },
+      ],
+      [
+        {
+          name: 'IMG_0001.JPG',
+          filesize: '10',
+          timestamp: '86400',
+        },
+        {
+          name: 'IMG_0001.MOV.mp4',
+          filesize: '30',
+          timestamp: '86400',
+        },
+      ],
+    )
+  })
 })
 
 const runTest = async (inputFiles, outputFiles) => {
