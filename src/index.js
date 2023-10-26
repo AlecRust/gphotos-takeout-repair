@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-const fs = require('fs')
-const path = require('path')
-const fse = require('fs-extra')
-const yargs = require('yargs/yargs')
-const { hideBin } = require('yargs/helpers')
+import { utimesSync } from 'node:fs'
+import path from 'node:path'
+import fse from 'fs-extra'
+import yargs from 'yargs/yargs'
+import { hideBin } from 'yargs/helpers'
 
 const isImageFile = (filename) => {
   const ext = path.extname(filename).toLowerCase()
@@ -15,21 +15,21 @@ const normalizeString = (str) => str.replace(/\u0027/g, '_')
 
 const copyFile = async (src, dest, timestamp, verbose) => {
   await fse.copy(src, dest)
-  fs.utimesSync(dest, timestamp, timestamp)
+  utimesSync(dest, timestamp, timestamp)
   if (verbose) {
     console.log(`Copied ${path.basename(dest)} with timestamp ${timestamp.toLocaleDateString()}`)
   }
 }
 
-const processFolder = async (srcFolder, destFolder, verbose) => {
-  const files = await fse.readdir(srcFolder)
+const processDir = async (srcDir, destDir, verbose) => {
+  const files = await fse.readdir(srcDir)
 
   for (const file of files) {
-    const filePath = path.join(srcFolder, file)
+    const filePath = path.join(srcDir, file)
     const fileStat = await fse.stat(filePath)
 
     if (fileStat.isDirectory()) {
-      await processFolder(filePath, path.join(destFolder, file), verbose)
+      await processDir(filePath, path.join(destDir, file), verbose)
       continue
     }
 
@@ -55,11 +55,11 @@ const processFolder = async (srcFolder, destFolder, verbose) => {
 
     if (!mediaFileToCopy) continue
 
-    const srcMediaFilePath = path.join(srcFolder, mediaFileToCopy)
-    let destMediaFilePath = path.join(destFolder, mediaFileToCopy)
+    const srcMediaFilePath = path.join(srcDir, mediaFileToCopy)
+    let destMediaFilePath = path.join(destDir, mediaFileToCopy)
 
     if (isImageFile(mediaFileToCopy)) {
-      destMediaFilePath = path.join(destFolder, title)
+      destMediaFilePath = path.join(destDir, title)
     }
 
     const timestamp = new Date(photoTakenTime.timestamp * 1000)
@@ -72,13 +72,13 @@ const setupYargs = () => {
     .option('src', {
       alias: 's',
       type: 'string',
-      description: 'Source folder',
+      description: 'Source directory',
       demandOption: true,
     })
     .option('dest', {
       alias: 'd',
       type: 'string',
-      description: 'Destination folder',
+      description: 'Destination directory',
       demandOption: true,
     })
     .option('verbose', {
@@ -89,21 +89,21 @@ const setupYargs = () => {
 }
 
 const run = async (argv) => {
-  const { src: srcFolder, dest: destFolder, verbose } = argv
+  const { src: srcDir, dest: destDir, verbose } = argv
 
   try {
     console.log('🚀 Copying files...')
-    await fse.ensureDir(destFolder)
-    await processFolder(srcFolder, destFolder, verbose)
+    await fse.ensureDir(destDir)
+    await processDir(srcDir, destDir, verbose)
     console.log('✅ Done!')
   } catch (err) {
     console.error(err)
   }
 }
 
-if (require.main === module) {
+if (process.env.NODE_ENV !== 'test') {
   const argv = setupYargs()
   run(argv)
 }
 
-module.exports = run
+export default run

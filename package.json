@@ -4,8 +4,9 @@
   "description": "Transform a Google Photos export (created with Takeout) into a useful directory of files.",
   "repository": "AlecRust/gphotos-takeout-repair",
   "author": "Alec Rust <me@alecrust.com>",
+  "type": "module",
   "license": "MIT",
-  "main": "src/index.js",
+  "exports": "./src/index.js",
   "bin": {
     "gphotos-takeout-repair": "src/index.js"
   },
@@ -18,9 +19,12 @@
     "exif",
     "export"
   ],
+  "engines": {
+    "node": ">=16"
+  },
   "scripts": {
     "start": "node src/index.js",
-    "test": "jest",
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
     "lint": "prettier --check . && eslint .",
     "format": "prettier --write . && eslint --fix .",
     "prepare": "husky install",
