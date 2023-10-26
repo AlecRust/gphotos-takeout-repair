@@ -1,4 +1,4 @@
-# gphotos-takeout-repair [![CI](https://github.com/AlecRust/gphotos-takeout-repair/actions/workflows/ci.yml/badge.svg)](https://github.com/AlecRust/gphotos-takeout-repair/actions/workflows/ci.yml) [![npm version](https://badge.fury.io/js/gphotos-takeout-repair.svg)](https://badge.fury.io/js/gphotos-takeout-repair)
+# gphotos-takeout-repair [![CI](https://github.com/AlecRust/gphotos-takeout-repair/actions/workflows/ci.yml/badge.svg)](https://github.com/AlecRust/gphotos-takeout-repair/actions/workflows/ci.yml) [![npm version](https://img.shields.io/npm/v/gphotos-takeout-repair.svg)](https://www.npmjs.com/package/gphotos-takeout-repair)
 
 > Transform a Google Photos export (created with [Takeout](https://takeout.google.com/)) into a useful directory of files.
 
