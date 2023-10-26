@@ -185,6 +185,29 @@ describe('Tests', () => {
     )
   })
 
+  it('handles mismatched extensions', async () => {
+    await runTest(
+      [
+        { name: 'IMG_0001.JPEG' },
+        {
+          name: 'IMG_0001.PNG.json',
+          content: {
+            title: 'IMG_0001.PNG',
+            photoTakenTime: {
+              timestamp: '86400',
+            },
+          },
+        },
+      ],
+      [
+        {
+          name: 'IMG_0001.PNG',
+          timestamp: 86400,
+        },
+      ],
+    )
+  })
+
   it('handles poorly matching filenames', async () => {
     await runTest(
       [
