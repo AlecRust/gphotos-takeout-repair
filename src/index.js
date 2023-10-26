@@ -11,7 +11,8 @@ const isImageFile = (filename) => {
   return ['.jpg', '.jpeg', '.png'].includes(ext)
 }
 
-const normalizeString = (str) => str.replace(/\u0027/g, '_')
+const normalizeString = (str) =>
+  str.replace(/\u0027/g, '_').replace(/\u0026/g, '_')
 
 const copyFile = async (src, dest, timestamp, verbose) => {
   await fse.copy(src, dest)
@@ -49,6 +50,8 @@ const chooseFromCandidates = (candidates, title) => {
     f.toLowerCase().includes(mediaType),
   )
   if (fileWithSameMediaType) return fileWithSameMediaType
+
+  return candidates[0]
 }
 
 const processDir = async (srcDir, destDir, verbose) => {
@@ -72,15 +75,12 @@ const processDir = async (srcDir, destDir, verbose) => {
 
     const candidates = buildCandidates(files, file, title)
 
-    if (candidates.length === 0) continue
-
-    const mediaFileToCopy = chooseFromCandidates(candidates, title)
-
-    if (!mediaFileToCopy) {
+    if (candidates.length === 0) {
       console.warn(`⚠️ Could not determine a file to copy for ${filePath}`)
       continue
     }
 
+    const mediaFileToCopy = chooseFromCandidates(candidates, title)
     const srcMediaFilePath = path.join(srcDir, mediaFileToCopy)
     let destMediaFilePath = path.join(destDir, mediaFileToCopy)
 

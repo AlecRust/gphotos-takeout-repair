@@ -162,14 +162,14 @@ describe('Tests', () => {
     )
   })
 
-  it('handles filename apostrophe replacement', async () => {
+  it('handles filename special character replacement', async () => {
     await runTest(
       [
-        { name: 'John Doe_s File.jpg' },
+        { name: 'John _ Sally_s Wedding-001.JPG' },
         {
-          name: 'John Doe_s File.jpg.json',
+          name: 'John _ Sally_s Wedding-001.JPG.json',
           content: {
-            title: 'John Doe\u0027s File.jpg',
+            title: 'John \u0026 Sally\u0027s Wedding-001.JPG',
             photoTakenTime: {
               timestamp: '86400',
             },
@@ -178,7 +178,7 @@ describe('Tests', () => {
       ],
       [
         {
-          name: "John Doe's File.jpg",
+          name: "John & Sally's Wedding-001.JPG",
           timestamp: 86400,
         },
       ],
