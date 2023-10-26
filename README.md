@@ -9,17 +9,17 @@ For example given the following files in the source directory:
 
 | Filename              | Date Created        | Description                   |
 | --------------------- | ------------------- | ----------------------------- |
-| `IMG_0001-edited.JPG` | Takeout export date | Edited version of the file    |
-| `IMG_0001.JPG`        | Takeout export date | Original version of the file  |
-| `IMG_0001.json`       | Takeout export date | Metadata information for file |
+| `IMG_0001-edited.jpg` | Takeout export date | Edited version of the file    |
+| `IMG_0001.jpg`        | Takeout export date | Original version of the file  |
+| `IMG_0001.jpg.json`   | Takeout export date | Metadata information for file |
 | `IMG_0002.mp4`        | Takeout export date | Original version of the file  |
-| `IMG_0002.json`       | Takeout export date | Metadata information for file |
+| `IMG_0002.mp4.json`   | Takeout export date | Metadata information for file |
 
 The output in the destination directory will be:
 
 | Filename       | Date Created                 | Description                  |
 | -------------- | ---------------------------- | ---------------------------- |
-| `IMG_0001.JPG` | "Photo taken" date from JSON | Edited version of the file   |
+| `IMG_0001.jpg` | "Photo taken" date from JSON | Edited version of the file   |
 | `IMG_0002.mp4` | "Photo taken" date from JSON | Original version of the file |
 
 ## Features
