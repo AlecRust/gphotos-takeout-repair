@@ -1,6 +1,6 @@
 {
   "hooks": {
-    "before:init": "npm run lint"
+    "before:init": "npm run lint && npm run test"
   },
   "git": {
     "commitArgs": ["-S"],

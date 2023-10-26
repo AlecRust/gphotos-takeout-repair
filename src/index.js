@@ -6,20 +6,6 @@ const fse = require('fs-extra')
 const yargs = require('yargs/yargs')
 const { hideBin } = require('yargs/helpers')
 
-const argv = yargs(hideBin(process.argv))
-  .option('src', {
-    alias: 's',
-    type: 'string',
-    description: 'Source folder',
-    demandOption: true,
-  })
-  .option('dest', {
-    alias: 'd',
-    type: 'string',
-    description: 'Destination folder',
-    demandOption: true,
-  }).argv
-
 const isImageFile = (filename) => {
   const ext = path.extname(filename).toLowerCase()
   return ext === '.jpg' || ext === '.jpeg' || ext === '.png'
@@ -75,7 +61,23 @@ const processFolder = async (srcFolder, destFolder) => {
   }
 }
 
-const run = async () => {
+const setupYargs = () => {
+  return yargs(hideBin(process.argv))
+    .option('src', {
+      alias: 's',
+      type: 'string',
+      description: 'Source folder',
+      demandOption: true,
+    })
+    .option('dest', {
+      alias: 'd',
+      type: 'string',
+      description: 'Destination folder',
+      demandOption: true,
+    }).argv
+}
+
+const run = async (argv) => {
   const { src: srcFolder, dest: destFolder } = argv
 
   try {
@@ -86,4 +88,9 @@ const run = async () => {
   }
 }
 
-run()
+if (require.main === module) {
+  const argv = setupYargs()
+  run(argv)
+}
+
+module.exports = run
