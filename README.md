@@ -7,20 +7,20 @@ where there are no JSON files or duplicate "edited" versions, and files have sui
 
 For example given the following files in the source directory:
 
-| Filename            | Date Created        | Description                   |
-| ------------------- | ------------------- | ----------------------------- |
-| IMG_0001-edited.JPG | Takeout export date | Edited version of the file    |
-| IMG_0001.JPG        | Takeout export date | Original version of the file  |
-| IMG_0001.json       | Takeout export date | Metadata information for file |
-| IMG_0002.mp4        | Takeout export date | Original version of the file  |
-| IMG_0002.json       | Takeout export date | Metadata information for file |
+| Filename              | Date Created        | Description                   |
+| --------------------- | ------------------- | ----------------------------- |
+| `IMG_0001-edited.JPG` | Takeout export date | Edited version of the file    |
+| `IMG_0001.JPG`        | Takeout export date | Original version of the file  |
+| `IMG_0001.json`       | Takeout export date | Metadata information for file |
+| `IMG_0002.mp4`        | Takeout export date | Original version of the file  |
+| `IMG_0002.json`       | Takeout export date | Metadata information for file |
 
 The output in the destination directory will be:
 
-| Filename     | Date Created                 | Description                  |
-| ------------ | ---------------------------- | ---------------------------- |
-| IMG_0001.JPG | "Photo taken" date from JSON | Edited version of the file   |
-| IMG_0002.mp4 | "Photo taken" date from JSON | Original version of the file |
+| Filename       | Date Created                 | Description                  |
+| -------------- | ---------------------------- | ---------------------------- |
+| `IMG_0001.JPG` | "Photo taken" date from JSON | Edited version of the file   |
+| `IMG_0002.mp4` | "Photo taken" date from JSON | Original version of the file |
 
 ## Features
 
