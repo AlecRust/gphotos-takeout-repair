@@ -15,7 +15,7 @@ describe('Tests', () => {
     console.log = originalLog // Restore console.log output
   })
 
-  it('copies file with timestamp', async () => {
+  it('copies file with timestamp from JSON', async () => {
     await runTest(
       [
         { name: 'IMG_0001.jpg' },
@@ -84,7 +84,7 @@ describe('Tests', () => {
     )
   })
 
-  it('handles non-image files', async () => {
+  it('copies non-image files', async () => {
     await runTest(
       [
         { name: 'IMG_0001.mp4' },
@@ -107,7 +107,7 @@ describe('Tests', () => {
     )
   })
 
-  it('prefers "-edited" file if available', async () => {
+  it('prefers "-edited" version if available', async () => {
     await runTest(
       [
         {
@@ -187,11 +187,11 @@ describe('Tests', () => {
   it('handles poorly matching filenames', async () => {
     await runTest(
       [
-        { name: 'A06B71E0-9D3A-4FF5-A391-FF3DA032E23F-2783-00000.mov' },
+        { name: 'A06B71E0-9D3A-2783-00000.mov' },
         {
-          name: 'A06B71E0-9D3A-4FF5-A391-FF3DA032E23F-2783-0000.json',
+          name: 'A06B71E0-9D3A-2783-0000.json',
           content: {
-            title: 'A06B71E0-9D3A-4FF5-A391-FF3DA032E23F-2783-000001F73FAE3E03.mov',
+            title: 'A06B71E0-9D3A-2783-000001F73FAE3E03.mov',
             photoTakenTime: {
               timestamp: '86400',
             },
@@ -200,7 +200,7 @@ describe('Tests', () => {
       ],
       [
         {
-          name: 'A06B71E0-9D3A-4FF5-A391-FF3DA032E23F-2783-00000.mov',
+          name: 'A06B71E0-9D3A-2783-00000.mov',
           timestamp: '86400',
         },
       ],
@@ -275,17 +275,17 @@ const runTest = async (inputFiles, outputFiles) => {
     for (const expectedFile of outputFiles) {
       const filePath = path.join('/dest', expectedFile.name)
 
-      // Assert file exists in /dest
+      // Assert file exists
       const destFiles = fs.readdirSync('/dest')
       expect(destFiles).toContain(expectedFile.name)
 
-      // Assert timestamp if specified
+      // Assert timestamp
       if (expectedFile.timestamp) {
         const stats = await fs.promises.stat(filePath)
         expect(Math.floor(stats.mtimeMs / 1000)).toEqual(Number(expectedFile.timestamp))
       }
 
-      // Assert filesize if specified
+      // Assert filesize
       if (expectedFile.filesize) {
         const stats = await fs.promises.stat(filePath)
         expect(stats.size).toEqual(Number(expectedFile.filesize))
