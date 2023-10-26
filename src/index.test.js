@@ -32,7 +32,7 @@ describe('Tests', () => {
       [
         {
           name: 'IMG_0001.jpg',
-          timestamp: '86400',
+          timestamp: 86400,
         },
       ],
     )
@@ -55,7 +55,7 @@ describe('Tests', () => {
       [
         {
           name: 'IMG_0001.JPG',
-          timestamp: '86400',
+          timestamp: 86400,
         },
       ],
     )
@@ -78,7 +78,7 @@ describe('Tests', () => {
       [
         {
           name: 'IMG_0001.JPG',
-          timestamp: '86400',
+          timestamp: 86400,
         },
       ],
     )
@@ -101,7 +101,7 @@ describe('Tests', () => {
       [
         {
           name: 'IMG_0001.mp4',
-          timestamp: '86400',
+          timestamp: 86400,
         },
       ],
     )
@@ -112,11 +112,11 @@ describe('Tests', () => {
       [
         {
           name: 'IMG_0001-edited.jpg',
-          filesize: '10',
+          filesize: 10,
         },
         {
           name: 'IMG_0001.jpg',
-          filesize: '20',
+          filesize: 20,
         },
         {
           name: 'IMG_0001.jpg.json',
@@ -131,8 +131,8 @@ describe('Tests', () => {
       [
         {
           name: 'IMG_0001.jpg',
-          timestamp: '86400',
-          filesize: '10',
+          timestamp: 86400,
+          filesize: 10,
         },
       ],
     )
@@ -155,7 +155,7 @@ describe('Tests', () => {
       [
         {
           name: 'IMG_0001.MOV.mp4',
-          timestamp: '86400',
+          timestamp: 86400,
         },
       ],
     )
@@ -178,7 +178,7 @@ describe('Tests', () => {
       [
         {
           name: "John Doe's File.jpg",
-          timestamp: '86400',
+          timestamp: 86400,
         },
       ],
     )
@@ -201,7 +201,7 @@ describe('Tests', () => {
       [
         {
           name: 'A06B71E0-9D3A-2783-00000.mov',
-          timestamp: '86400',
+          timestamp: 86400,
         },
       ],
     )
@@ -212,11 +212,11 @@ describe('Tests', () => {
       [
         {
           name: 'IMG_0001-edited.JPG',
-          filesize: '10',
+          filesize: 10,
         },
         {
           name: 'IMG_0001.JPG.jpeg',
-          filesize: '20',
+          filesize: 20,
         },
         {
           name: 'IMG_0001.JPG.json',
@@ -229,7 +229,7 @@ describe('Tests', () => {
         },
         {
           name: 'IMG_0001.MOV.mp4',
-          filesize: '30',
+          filesize: 30,
         },
         {
           name: 'IMG_0001.MOV.json',
@@ -244,13 +244,13 @@ describe('Tests', () => {
       [
         {
           name: 'IMG_0001.JPG',
-          filesize: '10',
-          timestamp: '86400',
+          filesize: 10,
+          timestamp: 86400,
         },
         {
           name: 'IMG_0001.MOV.mp4',
-          filesize: '30',
-          timestamp: '86400',
+          filesize: 30,
+          timestamp: 86400,
         },
       ],
     )
