@@ -8,20 +8,20 @@ const { hideBin } = require('yargs/helpers')
 
 const isImageFile = (filename) => {
   const ext = path.extname(filename).toLowerCase()
-  return ext === '.jpg' || ext === '.jpeg' || ext === '.png'
+  return ['.jpg', '.jpeg', '.png'].includes(ext)
 }
 
-const normalizeString = (str) => {
-  return str.replace(/\u0027/g, '_')
-}
+const normalizeString = (str) => str.replace(/\u0027/g, '_')
 
-const copyFile = async (src, dest, timestamp) => {
+const copyFile = async (src, dest, timestamp, verbose) => {
   await fse.copy(src, dest)
   fs.utimesSync(dest, timestamp, timestamp)
-  console.log(`Copied ${path.basename(dest)} with timestamp ${timestamp.toLocaleDateString()}`)
+  if (verbose) {
+    console.log(`Copied ${path.basename(dest)} with timestamp ${timestamp.toLocaleDateString()}`)
+  }
 }
 
-const processFolder = async (srcFolder, destFolder) => {
+const processFolder = async (srcFolder, destFolder, verbose) => {
   const files = await fse.readdir(srcFolder)
 
   for (const file of files) {
@@ -29,7 +29,7 @@ const processFolder = async (srcFolder, destFolder) => {
     const fileStat = await fse.stat(filePath)
 
     if (fileStat.isDirectory()) {
-      await processFolder(filePath, path.join(destFolder, file))
+      await processFolder(filePath, path.join(destFolder, file), verbose)
       continue
     }
 
@@ -49,14 +49,9 @@ const processFolder = async (srcFolder, destFolder) => {
     if (candidates.length === 0) continue
 
     const mediaType = path.extname(title).toLowerCase()
-
     const mediaFileToCopy =
-      candidates.find((f) => {
-        return f.toLowerCase().includes(mediaType) && f.includes('-edited')
-      }) ||
-      candidates.find((f) => {
-        return f.toLowerCase().includes(mediaType)
-      })
+      candidates.find((f) => f.toLowerCase().includes(mediaType) && f.includes('-edited')) ||
+      candidates.find((f) => f.toLowerCase().includes(mediaType))
 
     if (!mediaFileToCopy) continue
 
@@ -68,7 +63,7 @@ const processFolder = async (srcFolder, destFolder) => {
     }
 
     const timestamp = new Date(photoTakenTime.timestamp * 1000)
-    await copyFile(srcMediaFilePath, destMediaFilePath, timestamp)
+    await copyFile(srcMediaFilePath, destMediaFilePath, timestamp, verbose)
   }
 }
 
@@ -85,15 +80,22 @@ const setupYargs = () => {
       type: 'string',
       description: 'Destination folder',
       demandOption: true,
+    })
+    .option('verbose', {
+      alias: 'v',
+      type: 'boolean',
+      description: 'Enable verbose output',
     }).argv
 }
 
 const run = async (argv) => {
-  const { src: srcFolder, dest: destFolder } = argv
+  const { src: srcFolder, dest: destFolder, verbose } = argv
 
   try {
+    console.log('🚀 Copying files...')
     await fse.ensureDir(destFolder)
-    await processFolder(srcFolder, destFolder)
+    await processFolder(srcFolder, destFolder, verbose)
+    console.log('✅ Done!')
   } catch (err) {
     console.error(err)
   }
