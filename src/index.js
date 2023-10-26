@@ -17,8 +17,38 @@ const copyFile = async (src, dest, timestamp, verbose) => {
   await fse.copy(src, dest)
   utimesSync(dest, timestamp, timestamp)
   if (verbose) {
-    console.log(`Copied ${path.basename(dest)} with timestamp ${timestamp.toLocaleDateString()}`)
+    console.log(
+      `Copied ${path.basename(
+        dest,
+      )} with timestamp ${timestamp.toLocaleDateString()}`,
+    )
   }
+}
+
+const buildCandidates = (files, currentFile, title) => {
+  const normalizedTitle = normalizeString(title.split('.')[0])
+  return files.filter((f) => {
+    const normalizedFile = normalizeString(f.split('.')[0])
+    return (
+      f !== currentFile &&
+      (normalizedFile.startsWith(normalizedTitle) ||
+        normalizedTitle.startsWith(normalizedFile))
+    )
+  })
+}
+
+const chooseFromCandidates = (candidates, title) => {
+  const mediaType = path.extname(title).toLowerCase()
+
+  const editedVersion = candidates.find(
+    (f) => f.toLowerCase().includes(mediaType) && f.includes('-edited'),
+  )
+  if (editedVersion) return editedVersion
+
+  const fileWithSameMediaType = candidates.find((f) =>
+    f.toLowerCase().includes(mediaType),
+  )
+  if (fileWithSameMediaType) return fileWithSameMediaType
 }
 
 const processDir = async (srcDir, destDir, verbose) => {
@@ -40,20 +70,16 @@ const processDir = async (srcDir, destDir, verbose) => {
 
     if (!title || !photoTakenTime?.timestamp) continue
 
-    const normalizedTitle = normalizeString(title.split('.')[0])
-    const candidates = files.filter((f) => {
-      const normalizedFile = normalizeString(f.split('.')[0])
-      return f !== file && (normalizedFile.startsWith(normalizedTitle) || normalizedTitle.startsWith(normalizedFile))
-    })
+    const candidates = buildCandidates(files, file, title)
 
     if (candidates.length === 0) continue
 
-    const mediaType = path.extname(title).toLowerCase()
-    const mediaFileToCopy =
-      candidates.find((f) => f.toLowerCase().includes(mediaType) && f.includes('-edited')) ||
-      candidates.find((f) => f.toLowerCase().includes(mediaType))
+    const mediaFileToCopy = chooseFromCandidates(candidates, title)
 
-    if (!mediaFileToCopy) continue
+    if (!mediaFileToCopy) {
+      console.warn(`⚠️ Could not determine a file to copy for ${filePath}`)
+      continue
+    }
 
     const srcMediaFilePath = path.join(srcDir, mediaFileToCopy)
     let destMediaFilePath = path.join(destDir, mediaFileToCopy)

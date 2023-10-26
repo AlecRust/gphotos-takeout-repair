@@ -29,7 +29,7 @@ The output in the destination directory will be:
 - Retains source directory folder structure to handle Takeout's exporting of albums
 - Handles some common Takeout export filename and encoding issues ([view tests](./src/index.test.js))
 
-## Installation
+## Install
 
 ```sh
 npm install -g gphotos-takeout-repair

@@ -262,7 +262,9 @@ const runTest = async (inputFiles, outputFiles) => {
   // Create mock file system
   const mockFileSystemConfig = {
     '/src': inputFiles.reduce((acc, file) => {
-      acc[file.name] = file.content ? JSON.stringify(file.content) : Buffer.alloc(Number(file.filesize || 0))
+      acc[file.name] = file.content
+        ? JSON.stringify(file.content)
+        : Buffer.alloc(Number(file.filesize || 0))
       return acc
     }, {}),
     '/dest': {},
@@ -283,7 +285,9 @@ const runTest = async (inputFiles, outputFiles) => {
       // Assert timestamp
       if (expectedFile.timestamp) {
         const stats = await fs.promises.stat(filePath)
-        expect(Math.floor(stats.mtimeMs / 1000)).toEqual(Number(expectedFile.timestamp))
+        expect(Math.floor(stats.mtimeMs / 1000)).toEqual(
+          Number(expectedFile.timestamp),
+        )
       }
 
       // Assert filesize
