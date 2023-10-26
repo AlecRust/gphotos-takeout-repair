@@ -8,7 +8,7 @@ describe('Tests', () => {
 
   beforeEach(() => {
     originalLog = console.log
-    console.log = jest.fn() // Hide main script console.log output
+    console.log = jest.fn() // Hide console.log output
   })
 
   afterEach(() => {
@@ -209,13 +209,13 @@ const runTest = async (inputFiles, outputFiles) => {
 
       // Assert timestamp if specified
       if (expectedFile.timestamp) {
-        const stats = fs.statSync(filePath)
+        const stats = await fs.promises.stat(filePath)
         expect(Math.floor(stats.mtimeMs / 1000)).toEqual(Number(expectedFile.timestamp))
       }
 
       // Assert filesize if specified
       if (expectedFile.filesize) {
-        const stats = fs.statSync(filePath)
+        const stats = await fs.promises.stat(filePath)
         expect(stats.size).toEqual(Number(expectedFile.filesize))
       }
     }
