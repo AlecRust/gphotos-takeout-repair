@@ -1,7 +1,6 @@
 import { jest } from '@jest/globals'
 import mockFs from 'mock-fs'
-import fs from 'node:fs/promises'
-import { readdirSync, statSync } from 'node:fs'
+import fs from 'node:fs'
 import path from 'node:path'
 import run from './index.js'
 
@@ -278,18 +277,18 @@ const runTest = async (inputFiles, outputFiles) => {
       const filePath = path.join('/dest', expectedFile.name)
 
       // Assert file exists
-      const destFiles = readdirSync('/dest')
+      const destFiles = fs.readdirSync('/dest')
       expect(destFiles).toContain(expectedFile.name)
 
       // Assert timestamp
       if (expectedFile.timestamp) {
-        const stats = await fs.stat(filePath)
+        const stats = await fs.promises.stat(filePath)
         expect(Math.floor(stats.mtimeMs / 1000)).toEqual(Number(expectedFile.timestamp))
       }
 
       // Assert filesize
       if (expectedFile.filesize) {
-        const stats = statSync(filePath)
+        const stats = await fs.promises.stat(filePath)
         expect(stats.size).toEqual(Number(expectedFile.filesize))
       }
     }
