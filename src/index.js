@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import { utimesSync } from 'node:fs'
 import path from 'node:path'
 import fse from 'fs-extra'
 import yargs from 'yargs/yargs'
@@ -16,7 +15,7 @@ const normalizeAndRemoveExtension = (filename) => {
 
 const copyFile = async (src, dest, timestamp, verbose) => {
   await fse.copy(src, dest)
-  utimesSync(dest, timestamp, timestamp)
+  await fse.utimesSync(dest, timestamp, timestamp)
   if (verbose) {
     console.log(
       `Copied ${path.basename(
