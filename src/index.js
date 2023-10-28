@@ -30,8 +30,10 @@ const buildCandidates = (files, currentFile, title) => {
   const normalizedTitle = normalizeString(title.split('.')[0])
   return files.filter((f) => {
     const normalizedFile = normalizeString(f.split('.')[0])
+    const ext = path.extname(f).toLowerCase()
     return (
       f !== currentFile &&
+      ext !== '.json' &&
       (normalizedFile.startsWith(normalizedTitle) ||
         normalizedTitle.startsWith(normalizedFile))
     )
@@ -80,11 +82,11 @@ const processDir = async (srcDir, destDir, verbose) => {
       continue
     }
 
-    const mediaFileToCopy = chooseFromCandidates(candidates, title)
-    const srcMediaFilePath = path.join(srcDir, mediaFileToCopy)
-    let destMediaFilePath = path.join(destDir, mediaFileToCopy)
+    const selectedMediaFile = chooseFromCandidates(candidates, title)
+    const srcMediaFilePath = path.join(srcDir, selectedMediaFile)
+    let destMediaFilePath = path.join(destDir, selectedMediaFile)
 
-    if (isImageFile(mediaFileToCopy)) {
+    if (isImageFile(selectedMediaFile)) {
       destMediaFilePath = path.join(destDir, title)
     }
 
