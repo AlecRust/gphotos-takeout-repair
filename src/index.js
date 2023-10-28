@@ -6,16 +6,13 @@ import fse from 'fs-extra'
 import yargs from 'yargs/yargs'
 import { hideBin } from 'yargs/helpers'
 
-const isImageFile = (filename) => {
-  const ext = path.extname(filename).toLowerCase()
-  return ['.jpg', '.jpeg', '.png'].includes(ext)
+const isImageFile = (filename) =>
+  ['.jpg', '.jpeg', '.png'].includes(path.extname(filename).toLowerCase())
+
+const normalizeAndRemoveExtension = (filename) => {
+  const withoutExtension = path.parse(filename).name
+  return withoutExtension.replace(/[\u0027\u0026]/g, '_')
 }
-
-const normalizeString = (str) =>
-  str.replace(/\u0027/g, '_').replace(/\u0026/g, '_')
-
-const filenameWithoutExtension = (filename) =>
-  filename.split('.').slice(0, -1).join('.')
 
 const copyFile = async (src, dest, timestamp, verbose) => {
   await fse.copy(src, dest)
@@ -30,31 +27,32 @@ const copyFile = async (src, dest, timestamp, verbose) => {
 }
 
 const buildCandidates = (files, currentFile, title) => {
-  const normalizedTitle = normalizeString(filenameWithoutExtension(title))
+  const normalizedTitle = normalizeAndRemoveExtension(title)
+
   return files.filter((f) => {
-    const normalizedFile = normalizeString(filenameWithoutExtension(f))
+    const normalizedFilename = normalizeAndRemoveExtension(f)
     const ext = path.extname(f).toLowerCase()
     return (
       f !== currentFile &&
       ext !== '.json' &&
-      (normalizedFile.startsWith(normalizedTitle) ||
-        normalizedTitle.startsWith(normalizedFile))
+      (normalizedFilename.startsWith(normalizedTitle) ||
+        normalizedTitle.startsWith(normalizedFilename))
     )
   })
 }
 
 const chooseFromCandidates = (candidates, title) => {
-  const mediaType = path.extname(title).toLowerCase()
+  const extension = path.extname(title).toLowerCase()
 
   const editedVersion = candidates.find(
-    (f) => f.toLowerCase().includes(mediaType) && f.includes('-edited'),
+    (f) => f.toLowerCase().includes(extension) && f.includes('-edited'),
   )
   if (editedVersion) return editedVersion
 
-  const fileWithSameMediaType = candidates.find((f) =>
-    f.toLowerCase().includes(mediaType),
+  const fileWithSameExtension = candidates.find((f) =>
+    f.toLowerCase().includes(extension),
   )
-  if (fileWithSameMediaType) return fileWithSameMediaType
+  if (fileWithSameExtension) return fileWithSameExtension
 
   return candidates[0]
 }
