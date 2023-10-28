@@ -44,5 +44,6 @@ gphotos-takeout-repair --src ./unzipped-takeout-dir --dest ./output-dir
 ## Related
 
 - https://github.com/TheLastGimbus/GooglePhotosTakeoutHelper
+- https://github.com/m1rkwood/google-photos-takeout-scripts
 - https://github.com/mattwilson1024/google-photos-exif
 - https://github.com/garzj/google-photos-migrate
