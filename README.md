@@ -27,7 +27,7 @@ The output in the destination directory will be:
 - Copies files to destination directory using `photoTakenTime` from the JSON file
 - Copies the (usually best) "edited" version where possible to prevent duplicates
 - Retains source directory folder structure to handle Takeout's exporting of albums
-- Handles some common Takeout export filename and encoding issues ([view tests](./src/index.test.js))
+- Handles many common Takeout export filename and encoding issues ([view tests](./src/index.test.js))
 
 ## Install
 
