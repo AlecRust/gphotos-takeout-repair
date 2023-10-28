@@ -42,30 +42,7 @@ describe('Tests', () => {
   it('ignores extension casing', async () => {
     await runTest(
       [
-        { name: 'IMG_0001.JPG' },
-        {
-          name: 'IMG_0001.JPG.json',
-          content: {
-            title: 'IMG_0001.JPG',
-            photoTakenTime: {
-              timestamp: '86400',
-            },
-          },
-        },
-      ],
-      [
-        {
-          name: 'IMG_0001.JPG',
-          timestamp: 86400,
-        },
-      ],
-    )
-  })
-
-  it('handles duplicate extensions', async () => {
-    await runTest(
-      [
-        { name: 'IMG_0001.JPG.jpeg' },
+        { name: 'IMG_0001.jpg' },
         {
           name: 'IMG_0001.JPG.json',
           content: {
@@ -162,7 +139,30 @@ describe('Tests', () => {
     )
   })
 
-  it('handles filename special character replacement', async () => {
+  it('handles duplicate extensions in filename', async () => {
+    await runTest(
+      [
+        { name: 'IMG_0001.JPG.jpeg' },
+        {
+          name: 'IMG_0001.JPG.json',
+          content: {
+            title: 'IMG_0001.JPG',
+            photoTakenTime: {
+              timestamp: '86400',
+            },
+          },
+        },
+      ],
+      [
+        {
+          name: 'IMG_0001.JPG',
+          timestamp: 86400,
+        },
+      ],
+    )
+  })
+
+  it('handles special characters in filename', async () => {
     await runTest(
       [
         { name: 'John _ Sally_s Wedding-001.JPG' },
@@ -231,7 +231,7 @@ describe('Tests', () => {
     )
   })
 
-  it('handles different file types with similar filenames', async () => {
+  it('handles similar filenames with different extensions', async () => {
     await runTest(
       [
         {
