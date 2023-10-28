@@ -14,6 +14,9 @@ const isImageFile = (filename) => {
 const normalizeString = (str) =>
   str.replace(/\u0027/g, '_').replace(/\u0026/g, '_')
 
+const filenameWithoutExtension = (filename) =>
+  filename.split('.').slice(0, -1).join('.')
+
 const copyFile = async (src, dest, timestamp, verbose) => {
   await fse.copy(src, dest)
   utimesSync(dest, timestamp, timestamp)
@@ -27,11 +30,9 @@ const copyFile = async (src, dest, timestamp, verbose) => {
 }
 
 const buildCandidates = (files, currentFile, title) => {
-  const titleWithoutExtension = title.split('.').slice(0, -1).join('.')
-  const normalizedTitle = normalizeString(titleWithoutExtension)
+  const normalizedTitle = normalizeString(filenameWithoutExtension(title))
   return files.filter((f) => {
-    const fileWithoutExtension = f.split('.').slice(0, -1).join('.')
-    const normalizedFile = normalizeString(fileWithoutExtension)
+    const normalizedFile = normalizeString(filenameWithoutExtension(f))
     const ext = path.extname(f).toLowerCase()
     return (
       f !== currentFile &&
