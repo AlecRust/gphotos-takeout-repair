@@ -27,9 +27,11 @@ const copyFile = async (src, dest, timestamp, verbose) => {
 }
 
 const buildCandidates = (files, currentFile, title) => {
-  const normalizedTitle = normalizeString(title.split('.')[0])
+  const titleWithoutExtension = title.split('.').slice(0, -1).join('.')
+  const normalizedTitle = normalizeString(titleWithoutExtension)
   return files.filter((f) => {
-    const normalizedFile = normalizeString(f.split('.')[0])
+    const fileWithoutExtension = f.split('.').slice(0, -1).join('.')
+    const normalizedFile = normalizeString(fileWithoutExtension)
     const ext = path.extname(f).toLowerCase()
     return (
       f !== currentFile &&

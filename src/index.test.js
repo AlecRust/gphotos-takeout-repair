@@ -279,6 +279,59 @@ describe('Tests', () => {
       ],
     )
   })
+
+  it('handles similar filenames with periods', async () => {
+    await runTest(
+      [
+        {
+          name: 'Road Trip-0001-edited.JPG',
+          filesize: 10,
+        },
+        {
+          name: 'Road Trip-0001.JPG',
+          filesize: 20,
+        },
+        {
+          name: 'Road Trip-0001.JPG.json',
+          content: {
+            title: 'Road Trip-0001.JPG',
+            photoTakenTime: {
+              timestamp: '86400',
+            },
+          },
+        },
+        {
+          name: 'Road Trip.00-001-edited.jpg',
+          filesize: 30,
+        },
+        {
+          name: 'Road Trip.00-001.jpg',
+          filesize: 40,
+        },
+        {
+          name: 'Road Trip.00-001.jpg.json',
+          content: {
+            title: 'Road Trip.00-001.jpg',
+            photoTakenTime: {
+              timestamp: '86400',
+            },
+          },
+        },
+      ],
+      [
+        {
+          name: 'Road Trip-0001.JPG',
+          filesize: 10,
+          timestamp: 86400,
+        },
+        {
+          name: 'Road Trip.00-001.jpg',
+          filesize: 30,
+          timestamp: 86400,
+        },
+      ],
+    )
+  })
 })
 
 const runTest = async (inputFiles, outputFiles) => {
