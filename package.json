@@ -1,6 +1,6 @@
 {
   "name": "gphotos-takeout-repair",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "description": "Transform a Google Photos export (created with Takeout) into a useful directory of files.",
   "repository": "AlecRust/gphotos-takeout-repair",
   "author": "Alec Rust <me@alecrust.com>",
