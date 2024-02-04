@@ -11,7 +11,7 @@
     "gphotos-takeout-repair": "src/index.js"
   },
   "files": [
-    "src"
+    "src/index.js"
   ],
   "keywords": [
     "google-photos",
