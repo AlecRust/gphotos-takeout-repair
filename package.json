@@ -20,7 +20,7 @@
     "export"
   ],
   "engines": {
-    "node": ">=16"
+    "node": ">=16.15.1"
   },
   "scripts": {
     "start": "node src/index.js",
