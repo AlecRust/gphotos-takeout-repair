@@ -1,0 +1,27 @@
+[changelog]
+header = """
+### Changelog\n
+All notable changes to this project will be documented in this file.
+"""
+body = """
+{% if version %}\
+\n#### [{{ version | trim_start_matches(pat="v") }}](https://github.com/AlecRust/gphotos-takeout-repair/releases/tag/{{ version | trim_start_matches(pat="v") }})\n
+> {{ timestamp | date(format="%-d %B %Y") | default(value="") }}\n
+{% for commit in commits %}\
+- {{ commit.message | split(pat="\n") | first | trim }} [`{{ commit.id | truncate(length=7, end="") }}`](https://github.com/AlecRust/gphotos-takeout-repair/commit/{{ commit.id }})
+{% endfor %}\
+{% endif %}
+"""
+
+[git]
+conventional_commits = false
+filter_unconventional = false
+sort_commits = "newest"
+
+[[git.commit_parsers]]
+message = "^Release"
+skip = true
+
+[remote.github]
+owner = "AlecRust"
+repo = "gphotos-takeout-repair"
