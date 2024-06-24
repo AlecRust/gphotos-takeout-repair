@@ -1,6 +1,6 @@
 # gphotos-takeout-repair [![CI](https://github.com/AlecRust/gphotos-takeout-repair/actions/workflows/ci.yml/badge.svg)](https://github.com/AlecRust/gphotos-takeout-repair/actions/workflows/ci.yml) [![npm version](https://img.shields.io/npm/v/gphotos-takeout-repair.svg)](https://www.npmjs.com/package/gphotos-takeout-repair)
 
-> Transform a Google Photos export (created with [Takeout](https://takeout.google.com/)) into a useful directory of files.
+> Organize a Google Photos export (created with [Takeout](https://takeout.google.com/)) into a useful directory of files.
 
 The output is a directory of files (with folder structure retained) suitable for use as a traditional photo library,
 where there are no JSON files or duplicate "edited" versions, and files have suitable `Date Created` timestamps.
