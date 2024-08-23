@@ -4,7 +4,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["jest", "node"],
+  "plugins": ["node"],
   "env": {
     "node": true,
     "jest": true

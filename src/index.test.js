@@ -1,4 +1,4 @@
-import { jest } from '@jest/globals'
+import { vi } from 'vitest'
 import mockFs from 'mock-fs'
 import fs from 'node:fs'
 import path from 'node:path'
@@ -9,7 +9,7 @@ describe('Tests', () => {
 
   beforeEach(() => {
     originalLog = console.log
-    console.log = jest.fn() // Hide console.log output
+    console.log = vi.fn() // Hide console.log output
   })
 
   afterEach(() => {
