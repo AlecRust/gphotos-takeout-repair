@@ -15,24 +15,21 @@ const normalizeAndRemoveExtension = (filename) => {
 
 const copyFile = async (src, dest, timestamp, verbose) => {
   await fse.copy(src, dest)
-  await fse.utimesSync(dest, timestamp, timestamp)
+  await fse.utimes(dest, timestamp, timestamp)
   if (verbose) {
     console.log(
-      `Copied ${path.basename(
-        dest,
-      )} with timestamp ${timestamp.toLocaleDateString()}`,
+      `Copied ${path.basename(dest)} with timestamp ${timestamp.toLocaleDateString()}`,
     )
   }
 }
 
 const buildCandidates = (files, currentFile, title) => {
   const normalizedTitle = normalizeAndRemoveExtension(title)
-
-  return files.filter((f) => {
-    const normalizedFilename = normalizeAndRemoveExtension(f)
-    const ext = path.extname(f).toLowerCase()
+  return files.filter((file) => {
+    const normalizedFilename = normalizeAndRemoveExtension(file)
+    const ext = path.extname(file).toLowerCase()
     return (
-      f !== currentFile &&
+      file !== currentFile &&
       ext !== '.json' &&
       (normalizedFilename.startsWith(normalizedTitle) ||
         normalizedTitle.startsWith(normalizedFilename))
@@ -42,14 +39,14 @@ const buildCandidates = (files, currentFile, title) => {
 
 const chooseFromCandidates = (candidates, title) => {
   const extension = path.extname(title).toLowerCase()
-
   const editedVersion = candidates.find(
-    (f) => f.toLowerCase().includes(extension) && f.includes('-edited'),
+    (file) =>
+      file.toLowerCase().includes(extension) && file.includes('-edited'),
   )
   if (editedVersion) return editedVersion
 
-  const fileWithSameExtension = candidates.find((f) =>
-    f.toLowerCase().includes(extension),
+  const fileWithSameExtension = candidates.find((file) =>
+    file.toLowerCase().includes(extension),
   )
   if (fileWithSameExtension) return fileWithSameExtension
 
@@ -116,9 +113,7 @@ const setupYargs = () => {
     }).argv
 }
 
-const run = async (argv) => {
-  const { src: srcDir, dest: destDir, verbose } = argv
-
+const run = async ({ src: srcDir, dest: destDir, verbose }) => {
   try {
     console.log('🚀 Copying files...')
     await fse.ensureDir(destDir)
