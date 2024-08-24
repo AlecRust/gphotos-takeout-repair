@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+#### [1.4.1](https://github.com/AlecRust/gphotos-takeout-repair/releases/tag/1.4.1)
+
+> 24 August 2024
+
+- Bump dependencies [`b749093`](https://github.com/AlecRust/gphotos-takeout-repair/commit/b749093193859785b9d289ae7c02d5628d08f94b)
+- Upgrade ESLint to v9 [`03b382e`](https://github.com/AlecRust/gphotos-takeout-repair/commit/03b382e6880e8d270c0d58b7c0a041172bb866b5)
+- Improve code readability [`06017c4`](https://github.com/AlecRust/gphotos-takeout-repair/commit/06017c4f1ee180ea11aebfcea5ac5812f373d81e)
+- Switch from Jest to Vitest [`4fb9497`](https://github.com/AlecRust/gphotos-takeout-repair/commit/4fb949712d96fa7eb1fad6c548cb663787dd501b)
+- Update description [`3acaf18`](https://github.com/AlecRust/gphotos-takeout-repair/commit/3acaf18649b22b80a2fb38b8c651ca01a8ad4210)
+- Add CHANGELOG.md [`a3f008f`](https://github.com/AlecRust/gphotos-takeout-repair/commit/a3f008f9b2aa3878eead17d9aaaa6daa0afaf1f4)
+
 #### [1.4.0](https://github.com/AlecRust/gphotos-takeout-repair/releases/tag/1.4.0)
 
 > 4 February 2024
