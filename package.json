@@ -40,11 +40,11 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-n": "^17.10.2",
     "globals": "^15.9.0",
-    "husky": "^9.0.10",
-    "lint-staged": "^15.2.1",
+    "husky": "^9.1.5",
+    "lint-staged": "^15.2.9",
     "mock-fs": "^5.2.0",
-    "prettier": "^3.2.5",
-    "release-it": "^17.0.3",
+    "prettier": "^3.3.3",
+    "release-it": "^17.6.0",
     "vitest": "^2.0.5"
   },
   "lint-staged": {
