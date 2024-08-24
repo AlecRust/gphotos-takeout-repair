@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitest/config' // eslint-disable-line
+import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   test: {
