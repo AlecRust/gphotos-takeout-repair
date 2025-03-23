@@ -8,5 +8,12 @@
     ":automergeMinor",
     ":disableDependencyDashboard"
   ],
+  "packageRules": [
+    {
+      "matchDepTypes": ["engines"],
+      "matchPackageNames": ["node"],
+      "allowedVersions": "16.x"
+    }
+  ],
   "rangeStrategy": "bump"
 }

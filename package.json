@@ -13,7 +13,7 @@
   "files": ["src/index.js"],
   "keywords": ["google-photos", "takeout", "exif", "export"],
   "engines": {
-    "node": ">=16.15.1"
+    "node": ">=16.20.2"
   },
   "scripts": {
     "start": "node src/index.js",
