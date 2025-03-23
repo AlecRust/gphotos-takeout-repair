@@ -1,7 +1,7 @@
-import { vi } from 'vitest'
-import mockFs from 'mock-fs'
 import fs from 'node:fs'
 import path from 'node:path'
+import mockFs from 'mock-fs'
+import { vi } from 'vitest'
 import run from './index.js'
 
 describe('Tests', () => {

@@ -2,8 +2,8 @@
 
 import path from 'node:path'
 import fse from 'fs-extra'
-import yargs from 'yargs/yargs'
 import { hideBin } from 'yargs/helpers'
+import yargs from 'yargs/yargs'
 
 const isImageFile = (filename) =>
   ['.jpg', '.jpeg', '.png'].includes(path.extname(filename).toLowerCase())
