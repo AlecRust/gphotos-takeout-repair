@@ -1,6 +1,6 @@
 {
   "hooks": {
-    "before:init": "npm run lint && npm run test",
+    "before:init": "npm run check && npm run test",
     "after:bump": ["git-cliff -o CHANGELOG.md --tag ${version}"]
   },
   "git": {
