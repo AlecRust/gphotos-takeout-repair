@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+#### [1.4.2](https://github.com/AlecRust/gphotos-takeout-repair/releases/tag/1.4.2)
+
+> 23 March 2025
+
+- Adjust Node versions in test matrix [`2c9bab7`](https://github.com/AlecRust/gphotos-takeout-repair/commit/2c9bab7c38dc7b8b385b07f99f5e60c86c6a5f03)
+- Bump dependencies [`26cd267`](https://github.com/AlecRust/gphotos-takeout-repair/commit/26cd267ac040579d766818a6fb96788d0a7d158f)
+- Replace ESLint/Prettier with Biome [`9eacfac`](https://github.com/AlecRust/gphotos-takeout-repair/commit/9eacfac443d41cd526dabf5b320d376139cf6ecd)
+
 #### [1.4.1](https://github.com/AlecRust/gphotos-takeout-repair/releases/tag/1.4.1)
 
 > 24 August 2024
