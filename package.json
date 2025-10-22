@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "fs-extra": "^11.3.2",
-    "yargs": "^17.7.2"
+    "yargs": "^18.0.0"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.7",
