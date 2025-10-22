@@ -110,7 +110,8 @@ const setupYargs = () => {
       alias: 'v',
       type: 'boolean',
       description: 'Enable verbose output',
-    }).argv
+    })
+    .parse()
 }
 
 const run = async ({ src: srcDir, dest: destDir, verbose }) => {
