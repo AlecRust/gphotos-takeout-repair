@@ -2,6 +2,40 @@
 
 All notable changes to this project will be documented in this file.
 
+#### [2.0.0](https://github.com/AlecRust/gphotos-takeout-repair/releases/tag/2.0.0)
+
+> 22 October 2025
+
+- Rebuild lockfile [`6faa5a7`](https://github.com/AlecRust/gphotos-takeout-repair/commit/6faa5a7d3a966e81a78a7379b784c9e076116d60)
+- Switch yargs argv -> parse [`e6f680e`](https://github.com/AlecRust/gphotos-takeout-repair/commit/e6f680e2d861f3e91a0f2245812f5776d56c9409)
+- Prevent Renovate opening Node.js PRs [`e168aff`](https://github.com/AlecRust/gphotos-takeout-repair/commit/e168aff3e3f3e0eba1db2d8a1916fc089cb00bba)
+- Mention Node.js version requirement in README [`d9f54fb`](https://github.com/AlecRust/gphotos-takeout-repair/commit/d9f54fb4fb8248a76365055d955162a281a47879)
+- Adjust minimum Node.js version to >=20.19.0 [`f2b8156`](https://github.com/AlecRust/gphotos-takeout-repair/commit/f2b8156baa0e12da3b9fd392d4fc312b4c480385)
+- Merge pull request #20 from AlecRust/renovate/major-vitest-monorepo [`6790c8c`](https://github.com/AlecRust/gphotos-takeout-repair/commit/6790c8ce8c0e485d3ededf1da4362ef9aed03b9b)
+- Update dependency vitest to v4 [`a1b60f6`](https://github.com/AlecRust/gphotos-takeout-repair/commit/a1b60f6d999ce267e24949ea48489df97c8f5f99)
+- Merge pull request #21 from AlecRust/renovate/yargs-18.x [`9ca9ab2`](https://github.com/AlecRust/gphotos-takeout-repair/commit/9ca9ab234e11d7fa094ee1c93cf164b200653e90)
+- Update dependency yargs to v18 [`c739f3d`](https://github.com/AlecRust/gphotos-takeout-repair/commit/c739f3d48e3dd1b1b045ce57849b5dab4888a7d3)
+- Adjust minimum Node.js version to >=20.19.0 [`e46e1ba`](https://github.com/AlecRust/gphotos-takeout-repair/commit/e46e1ba30b467699e7d2f72c14f9093606952f10)
+- Merge pull request #19 from AlecRust/renovate/release-it-19.x [`8d4a06b`](https://github.com/AlecRust/gphotos-takeout-repair/commit/8d4a06b2edf376302afda91deaa8c0771a8d1bf7)
+- Update dependency release-it to v19 [`8fa0f64`](https://github.com/AlecRust/gphotos-takeout-repair/commit/8fa0f6449f8c289c2f12c368b111c3f930a2e995)
+- Update minimum Node.js version to 20.x [`08fe567`](https://github.com/AlecRust/gphotos-takeout-repair/commit/08fe567975604f72e78144e39696613bc85b320f)
+- Merge pull request #18 from AlecRust/renovate/lint-staged-16.x [`43e5af0`](https://github.com/AlecRust/gphotos-takeout-repair/commit/43e5af0a2a6dc366eefdad1637c3c8313e472eb7)
+- Update dependency lint-staged to v16 [`93ea07e`](https://github.com/AlecRust/gphotos-takeout-repair/commit/93ea07e25ebea3695f67aa3dbb5f7b2a916bb3dd)
+- Merge pull request #17 from AlecRust/renovate/actions-setup-node-6.x [`5817eb6`](https://github.com/AlecRust/gphotos-takeout-repair/commit/5817eb64e4ef903f7ba6eabf9386c8c9109e7e8a)
+- Update actions/setup-node action to v6 [`f38569b`](https://github.com/AlecRust/gphotos-takeout-repair/commit/f38569bcc0cb2c0a5d8001f7e644c32b6fdb950e)
+- Set packageManager in package.json [`45765d5`](https://github.com/AlecRust/gphotos-takeout-repair/commit/45765d5e4d4ecda288c2582dd7a352be09ebf753)
+- Upgrade Biome to v2 [`d3d9303`](https://github.com/AlecRust/gphotos-takeout-repair/commit/d3d93033838ba030f232e7cc2f2255d68af0d76e)
+- Merge pull request #15 from AlecRust/renovate/actions-setup-node-5.x [`0967d00`](https://github.com/AlecRust/gphotos-takeout-repair/commit/0967d00940cbef17a1ad877df224a2006f3b1a0d)
+- Update actions/setup-node action to v5 [`5f0f4ed`](https://github.com/AlecRust/gphotos-takeout-repair/commit/5f0f4edba91954159f214eea97304fb71a6e5344)
+- Merge pull request #14 from AlecRust/renovate/actions-checkout-5.x [`8623fa8`](https://github.com/AlecRust/gphotos-takeout-repair/commit/8623fa8e70077e2e87c7c0893f8669f983597f79)
+- Update actions/checkout action to v5 [`f31745c`](https://github.com/AlecRust/gphotos-takeout-repair/commit/f31745c23148c02e23475f568e16cc0f57e1d262)
+- Merge pull request #13 from AlecRust/renovate/all-minor-patch [`a2b9dba`](https://github.com/AlecRust/gphotos-takeout-repair/commit/a2b9dba7e85e9729b99027692b1cf363fec40c6e)
+- Update all non-major dependencies [`465f060`](https://github.com/AlecRust/gphotos-takeout-repair/commit/465f060bb1b5475ed86a9c064293b607157816b4)
+- Update minimum Node.js version 16.15.1 -> 16.20.2 [`ecb946d`](https://github.com/AlecRust/gphotos-takeout-repair/commit/ecb946d85e76ac66d63c21b272160940e8d1925e)
+- Adjust CI workflow permissions [`4340bdd`](https://github.com/AlecRust/gphotos-takeout-repair/commit/4340bdd9453b2d2df85329657a5ebdeccef19e84)
+- Switch from Dependabot to Renovate [`5c34a81`](https://github.com/AlecRust/gphotos-takeout-repair/commit/5c34a81a018bc41d1122cb436989eb60503ab4b8)
+- Directly run check script during release [`19f9946`](https://github.com/AlecRust/gphotos-takeout-repair/commit/19f9946aca7c660cbeb4c66eae0b04decd2a3d46)
+
 #### [1.4.2](https://github.com/AlecRust/gphotos-takeout-repair/releases/tag/1.4.2)
 
 > 23 March 2025
