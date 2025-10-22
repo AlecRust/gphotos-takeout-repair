@@ -42,7 +42,7 @@
     "lint-staged": "^16.2.6",
     "mock-fs": "^5.5.0",
     "release-it": "^19.0.5",
-    "vitest": "^3.2.4"
+    "vitest": "^4.0.1"
   },
   "lint-staged": {
     "*": "biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"
