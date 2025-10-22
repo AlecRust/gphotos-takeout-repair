@@ -12,7 +12,7 @@
     {
       "matchDepTypes": ["engines"],
       "matchPackageNames": ["node"],
-      "allowedVersions": "16.x"
+      "allowedVersions": "20.x"
     }
   ],
   "rangeStrategy": "bump"
