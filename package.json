@@ -10,8 +10,15 @@
   "bin": {
     "gphotos-takeout-repair": "src/index.js"
   },
-  "files": ["src/index.js"],
-  "keywords": ["google-photos", "takeout", "exif", "export"],
+  "files": [
+    "src/index.js"
+  ],
+  "keywords": [
+    "google-photos",
+    "takeout",
+    "exif",
+    "export"
+  ],
   "engines": {
     "node": ">=16.20.2"
   },
@@ -29,7 +36,7 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
+    "@biomejs/biome": "2.2.7",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.2",
     "mock-fs": "^5.5.0",
