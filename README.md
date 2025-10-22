@@ -29,6 +29,10 @@ The output in the destination directory will be:
 - Retains source directory folder structure to handle Takeout's exporting of albums
 - Handles many common Takeout export filename and encoding issues ([view tests](./src/index.test.js))
 
+## Requirements
+
+- Node.js >= 20.19.x
+
 ## Install
 
 ```sh
