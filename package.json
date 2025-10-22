@@ -19,6 +19,7 @@
     "exif",
     "export"
   ],
+  "packageManager": "npm@11.6.2",
   "engines": {
     "node": ">=16.20.2"
   },
