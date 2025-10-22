@@ -21,7 +21,7 @@
   ],
   "packageManager": "npm@11.6.2",
   "engines": {
-    "node": ">=20.19.x"
+    "node": ">=20.19.5"
   },
   "scripts": {
     "start": "node src/index.js",
