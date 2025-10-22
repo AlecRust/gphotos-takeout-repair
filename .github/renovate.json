@@ -11,8 +11,8 @@
   "packageRules": [
     {
       "matchDepTypes": ["engines"],
-      "matchPackageNames": ["node"],
-      "allowedVersions": "20.x"
+      "matchManagers": ["npm"],
+      "enabled": false
     }
   ],
   "rangeStrategy": "bump"
