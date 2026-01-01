@@ -19,7 +19,7 @@
     "exif",
     "export"
   ],
-  "packageManager": "npm@11.6.2",
+  "packageManager": "npm@11.7.0",
   "engines": {
     "node": ">=20.19.0"
   },
@@ -33,16 +33,16 @@
     "release": "release-it --ci"
   },
   "dependencies": {
-    "fs-extra": "^11.3.2",
+    "fs-extra": "^11.3.3",
     "yargs": "^18.0.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.2.7",
+    "@biomejs/biome": "2.3.10",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.6",
+    "lint-staged": "^16.2.7",
     "mock-fs": "^5.5.0",
-    "release-it": "^19.0.5",
-    "vitest": "^4.0.1"
+    "release-it": "^19.2.2",
+    "vitest": "^4.0.16"
   },
   "lint-staged": {
     "*": "biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"
