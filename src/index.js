@@ -116,9 +116,11 @@ const setupYargs = () => {
 
 const run = async ({ src: srcDir, dest: destDir, verbose }) => {
   try {
+    const resolvedSrcDir = path.resolve(srcDir)
+    const resolvedDestDir = path.resolve(destDir)
     console.log('🚀 Copying files...')
-    await fse.ensureDir(destDir)
-    await processDir(srcDir, destDir, verbose)
+    await fse.ensureDir(resolvedDestDir)
+    await processDir(resolvedSrcDir, resolvedDestDir, verbose)
     console.log('✅ Done!')
   } catch (err) {
     console.error(err)
