@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+#### [3.0.0](https://github.com/AlecRust/gphotos-takeout-repair/releases/tag/3.0.0)
+
+> 22 October 2026
+- Skip source symlinks when processing Takeout exports [`ccaed76`](https://github.com/AlecRust/gphotos-takeout-repair/commit/ccaed76b8229ee2a78ad30ec38956bfa7141c42b)
+- Prevent metadata paths and output symlinks from redirecting writes [`5f8f547`](https://github.com/AlecRust/gphotos-takeout-repair/commit/5f8f5478058fcc14175c19560988116be491a660)
+- Update dependencies and verify current Node.js support [`54c9463`](https://github.com/AlecRust/gphotos-takeout-repair/commit/54c94638c5bc1b18f73cd25d2fcbad8701fa414f)
+- Update all non-major dependencies (#33) [`194ed5f`](https://github.com/AlecRust/gphotos-takeout-repair/commit/194ed5ff4179ff69601c95f5c903d9645d817393)
+- Update dependency vitest to v4.1.11 [SECURITY] (#31) [`0bed1fd`](https://github.com/AlecRust/gphotos-takeout-repair/commit/0bed1fd97a80fdf6467f01f159080036caa927c8)
+- Merge pull request #28 from AlecRust/renovate/lint-staged-17.x [`2dd62f2`](https://github.com/AlecRust/gphotos-takeout-repair/commit/2dd62f2c1f1d6d4878900c2c6cbfd34b25aaad3b)
+- Update dependency lint-staged to v17 [`9491a49`](https://github.com/AlecRust/gphotos-takeout-repair/commit/9491a4954aeecd633fcc5401652717d6bdeffa69)
+- Update dependency @biomejs/biome to v2.5.2 (#30) [`5fcdfbc`](https://github.com/AlecRust/gphotos-takeout-repair/commit/5fcdfbc7a76bea20dc3bf57f26fca49fa8eb424e)
+- Merge pull request #27 from AlecRust/renovate/actions-checkout-7.x [`1f5b48d`](https://github.com/AlecRust/gphotos-takeout-repair/commit/1f5b48d9849f81e38567f65834b690e8d3809ed5)
+- Update actions/checkout action to v7 [`cee213c`](https://github.com/AlecRust/gphotos-takeout-repair/commit/cee213c72a0e34e25b28bc3e369286e443b27061)
+- Merge pull request #26 from AlecRust/renovate/all-minor-patch [`c050a83`](https://github.com/AlecRust/gphotos-takeout-repair/commit/c050a8357d95297683e20297809e654f6a419960)
+- Update all non-major dependencies [`d26bb0e`](https://github.com/AlecRust/gphotos-takeout-repair/commit/d26bb0e7a797293a8e4977ccd929dc8139dbedf2)
+- Update all non-major dependencies (#25) [`b69ce12`](https://github.com/AlecRust/gphotos-takeout-repair/commit/b69ce12fa06b768789b5a528a9ab3c43b4d653e1)
+- Bump dependencies [`4abf492`](https://github.com/AlecRust/gphotos-takeout-repair/commit/4abf492c2f9ef35cf05ad754824b1296d7608584)
+- Merge pull request #23 from AlecRust/renovate/all-minor-patch [`7bc6054`](https://github.com/AlecRust/gphotos-takeout-repair/commit/7bc605420e37fcef05909451d83230a8b5c59e1f)
+- Update all non-major dependencies [`361a49b`](https://github.com/AlecRust/gphotos-takeout-repair/commit/361a49be832dc13ffdaa7bd0ec7b76cbd5ce1b86)
+- Merge pull request #24 from AlecRust/renovate/actions-checkout-6.x [`63fb4e6`](https://github.com/AlecRust/gphotos-takeout-repair/commit/63fb4e60acd1b9069eb980ecfe67f56d26fb4bf3)
+- Update actions/checkout action to v6 [`30ebec3`](https://github.com/AlecRust/gphotos-takeout-repair/commit/30ebec3a82457bedf6ff08571170a2c6c8b49f5d)
+
 #### [2.0.0](https://github.com/AlecRust/gphotos-takeout-repair/releases/tag/2.0.0)
 
 > 22 October 2025
