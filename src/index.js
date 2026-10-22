@@ -8,12 +8,36 @@ import yargs from 'yargs/yargs'
 const isImageFile = (filename) =>
   ['.jpg', '.jpeg', '.png'].includes(path.extname(filename).toLowerCase())
 
+// Metadata titles are filenames, never paths, on either supported path syntax.
+const isSafeTitle = (title) =>
+  typeof title === 'string' &&
+  title.length > 0 &&
+  title !== '.' &&
+  title !== '..' &&
+  !title.includes('\0') &&
+  path.posix.basename(title) === title &&
+  path.win32.basename(title) === title
+
+const rejectDestinationSymlink = async (dest) => {
+  let stat
+  try {
+    stat = await fse.lstat(dest)
+  } catch (err) {
+    if (err.code === 'ENOENT') return
+    throw err
+  }
+  if (stat.isSymbolicLink()) {
+    throw new Error(`Refusing to write through a symbolic link: ${dest}`)
+  }
+}
+
 const normalizeAndRemoveExtension = (filename) => {
   const withoutExtension = path.parse(filename).name
   return withoutExtension.replace(/[\u0027\u0026]/g, '_')
 }
 
 const copyFile = async (src, dest, timestamp, verbose) => {
+  await rejectDestinationSymlink(dest)
   await fse.copy(src, dest)
   await fse.utimes(dest, timestamp, timestamp)
   if (verbose) {
@@ -54,6 +78,8 @@ const chooseFromCandidates = (candidates, title) => {
 }
 
 const processDir = async (srcDir, destDir, verbose) => {
+  await rejectDestinationSymlink(destDir)
+  await fse.ensureDir(destDir)
   const files = await fse.readdir(srcDir)
 
   for (const file of files) {
@@ -71,6 +97,11 @@ const processDir = async (srcDir, destDir, verbose) => {
     const { title, photoTakenTime } = metadata
 
     if (!title || !photoTakenTime?.timestamp) continue
+
+    if (!isSafeTitle(title)) {
+      console.warn(`⚠️ Unsafe metadata title in ${filePath}; skipping`)
+      continue
+    }
 
     const candidates = buildCandidates(files, file, title)
 
@@ -115,19 +146,21 @@ const setupYargs = () => {
 }
 
 const run = async ({ src: srcDir, dest: destDir, verbose }) => {
-  try {
-    console.log('🚀 Copying files...')
-    await fse.ensureDir(destDir)
-    await processDir(srcDir, destDir, verbose)
-    console.log('✅ Done!')
-  } catch (err) {
-    console.error(err)
-  }
+  console.log('🚀 Copying files...')
+  await fse.ensureDir(destDir)
+  // The caller may choose a symlink as the output root. Check all entries below
+  // its real location so album and media symlinks cannot redirect later writes.
+  const resolvedDestDir = await fse.realpath(destDir)
+  await processDir(srcDir, resolvedDestDir, verbose)
+  console.log('✅ Done!')
 }
 
 if (process.env.NODE_ENV !== 'test') {
   const argv = setupYargs()
-  run(argv)
+  run(argv).catch((err) => {
+    console.error(err)
+    process.exitCode = 1
+  })
 }
 
 export default run

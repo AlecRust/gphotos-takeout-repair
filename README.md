@@ -28,6 +28,7 @@ The output in the destination directory will be:
 - Copies the (usually best) "edited" version where possible to prevent duplicates
 - Retains source directory folder structure to handle Takeout's exporting of albums
 - Handles many common Takeout export filename and encoding issues ([view tests](./src/index.test.js))
+- Skips unsafe metadata titles with a warning and refuses writes through symlinks inside the output directory
 
 ## Requirements
 

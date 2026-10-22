@@ -6,6 +6,7 @@ import {
   readFile,
   rm,
   stat,
+  symlink,
   writeFile,
 } from 'node:fs/promises'
 import os from 'node:os'
@@ -37,6 +38,36 @@ it('rejects missing required CLI arguments', async () => {
     code: 1,
     stderr: expect.stringContaining('Missing required arguments: src, dest'),
   })
+})
+
+it('exits unsuccessfully when an output symlink would redirect a write', async () => {
+  tempDir = await mkdtemp(path.join(os.tmpdir(), 'gphotos-takeout-repair-'))
+  const src = path.join(tempDir, 'source')
+  const dest = path.join(tempDir, 'output')
+  const outside = path.join(tempDir, 'outside.jpg')
+  await mkdir(src)
+  await mkdir(dest)
+  await writeFile(outside, 'keep this file')
+  await writeFile(path.join(src, 'photo.jpg'), 'source photo')
+  await writeFile(
+    path.join(src, 'photo.jpg.json'),
+    JSON.stringify({
+      title: 'photo.jpg',
+      photoTakenTime: { timestamp: '1700000000' },
+    }),
+  )
+  await symlink(outside, path.join(dest, 'photo.jpg'))
+
+  await expect(
+    exec(process.execPath, [cli, '--src', src, '--dest', dest], options),
+  ).rejects.toMatchObject({
+    code: 1,
+    stderr: expect.stringContaining(
+      'Refusing to write through a symbolic link',
+    ),
+    stdout: expect.not.stringContaining('Done!'),
+  })
+  expect(await readFile(outside, 'utf8')).toBe('keep this file')
 })
 
 it('copies a nested album through the CLI with edited content and metadata timestamps', async () => {
