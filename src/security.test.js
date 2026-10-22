@@ -4,7 +4,9 @@ import {
   readdir,
   readFile,
   rm,
+  stat,
   symlink,
+  utimes,
   writeFile,
 } from 'node:fs/promises'
 import os from 'node:os'
@@ -160,4 +162,38 @@ it('allows caller-selected relative paths and a symlink to the destination root'
   expect(console.warn).not.toHaveBeenCalled()
   expect(await readdir(dest)).toEqual([title])
   expect(await readFile(path.join(dest, title), 'utf8')).toBe('source photo')
+})
+
+it('does not copy source media symlinks or change their targets through timestamps', async () => {
+  const outside = path.join(tempDir, 'outside.jpg')
+  await writeFile(outside, 'keep this file')
+  await utimes(outside, 86400, 86400)
+  await addPhoto(src, 'photo.jpg')
+  await rm(path.join(src, 'photo.jpg'))
+  await symlink(outside, path.join(src, 'photo.jpg'))
+
+  await run({ src, dest })
+
+  expect(console.warn).toHaveBeenCalledWith(
+    expect.stringContaining('Skipping source symbolic link'),
+  )
+  expect(await readdir(dest)).toEqual([])
+  expect(await readFile(outside, 'utf8')).toBe('keep this file')
+  expect(Math.floor((await stat(outside)).mtimeMs / 1000)).toBe(86400)
+})
+
+it('does not follow source album symlinks or read symlinked metadata', async () => {
+  const outside = path.join(tempDir, 'outside')
+  await addPhoto(outside, 'photo.jpg')
+  await symlink(outside, path.join(src, 'album'), 'dir')
+  await writeFile(path.join(src, 'photo.jpg'), 'source photo')
+  await symlink(
+    path.join(outside, 'photo.jpg.json'),
+    path.join(src, 'photo.jpg.json'),
+  )
+
+  await run({ src, dest })
+
+  expect(console.warn).toHaveBeenCalledTimes(2)
+  expect(await readdir(dest)).toEqual([])
 })

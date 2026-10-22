@@ -80,18 +80,26 @@ const chooseFromCandidates = (candidates, title) => {
 const processDir = async (srcDir, destDir, verbose) => {
   await rejectDestinationSymlink(destDir)
   await fse.ensureDir(destDir)
-  const files = await fse.readdir(srcDir)
+  const entries = await fse.readdir(srcDir, { withFileTypes: true })
+  const files = entries
+    .filter((entry) => entry.isFile())
+    .map((entry) => entry.name)
 
-  for (const file of files) {
+  for (const entry of entries) {
+    const file = entry.name
     const filePath = path.join(srcDir, file)
-    const fileStat = await fse.stat(filePath)
 
-    if (fileStat.isDirectory()) {
+    if (entry.isSymbolicLink()) {
+      console.warn(`⚠️ Skipping source symbolic link: ${filePath}`)
+      continue
+    }
+
+    if (entry.isDirectory()) {
       await processDir(filePath, path.join(destDir, file), verbose)
       continue
     }
 
-    if (!file.endsWith('.json')) continue
+    if (!entry.isFile() || !file.endsWith('.json')) continue
 
     const metadata = await fse.readJson(filePath)
     const { title, photoTakenTime } = metadata
