@@ -1,6 +1,6 @@
 import fs from 'node:fs'
+import os from 'node:os'
 import path from 'node:path'
-import mockFs from 'mock-fs'
 import { vi } from 'vitest'
 import run from './index.js'
 
@@ -335,27 +335,29 @@ describe('Tests', () => {
 })
 
 const runTest = async (inputFiles, outputFiles) => {
-  // Create mock file system
-  const mockFileSystemConfig = {
-    '/src': inputFiles.reduce((acc, file) => {
-      acc[file.name] = file.content
-        ? JSON.stringify(file.content)
-        : Buffer.alloc(Number(file.filesize || 0))
-      return acc
-    }, {}),
-    '/dest': {},
-  }
-
-  mockFs(mockFileSystemConfig)
-
+  const tempDir = await fs.promises.mkdtemp(
+    path.join(os.tmpdir(), 'gphotos-takeout-repair-'),
+  )
+  const src = path.join(tempDir, 'src')
+  const dest = path.join(tempDir, 'dest')
   try {
-    await run({ src: '/src', dest: '/dest' })
+    await fs.promises.mkdir(src)
+    for (const file of inputFiles) {
+      await fs.promises.writeFile(
+        path.join(src, file.name),
+        file.content
+          ? JSON.stringify(file.content)
+          : Buffer.alloc(Number(file.filesize || 0)),
+      )
+    }
+
+    await run({ src, dest })
 
     for (const expectedFile of outputFiles) {
-      const filePath = path.join('/dest', expectedFile.name)
+      const filePath = path.join(dest, expectedFile.name)
 
       // Assert file exists
-      const destFiles = fs.readdirSync('/dest')
+      const destFiles = fs.readdirSync(dest)
       expect(destFiles).toContain(expectedFile.name)
 
       // Assert timestamp
@@ -373,6 +375,6 @@ const runTest = async (inputFiles, outputFiles) => {
       }
     }
   } finally {
-    mockFs.restore()
+    await fs.promises.rm(tempDir, { recursive: true, force: true })
   }
 }

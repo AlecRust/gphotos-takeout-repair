@@ -5,7 +5,6 @@ All notable changes to this project will be documented in this file.
 #### [2.0.0](https://github.com/AlecRust/gphotos-takeout-repair/releases/tag/2.0.0)
 
 > 22 October 2025
-
 - Rebuild lockfile [`6faa5a7`](https://github.com/AlecRust/gphotos-takeout-repair/commit/6faa5a7d3a966e81a78a7379b784c9e076116d60)
 - Switch yargs argv -> parse [`e6f680e`](https://github.com/AlecRust/gphotos-takeout-repair/commit/e6f680e2d861f3e91a0f2245812f5776d56c9409)
 - Prevent Renovate opening Node.js PRs [`e168aff`](https://github.com/AlecRust/gphotos-takeout-repair/commit/e168aff3e3f3e0eba1db2d8a1916fc089cb00bba)
@@ -39,7 +38,6 @@ All notable changes to this project will be documented in this file.
 #### [1.4.2](https://github.com/AlecRust/gphotos-takeout-repair/releases/tag/1.4.2)
 
 > 23 March 2025
-
 - Adjust Node versions in test matrix [`2c9bab7`](https://github.com/AlecRust/gphotos-takeout-repair/commit/2c9bab7c38dc7b8b385b07f99f5e60c86c6a5f03)
 - Bump dependencies [`26cd267`](https://github.com/AlecRust/gphotos-takeout-repair/commit/26cd267ac040579d766818a6fb96788d0a7d158f)
 - Replace ESLint/Prettier with Biome [`9eacfac`](https://github.com/AlecRust/gphotos-takeout-repair/commit/9eacfac443d41cd526dabf5b320d376139cf6ecd)
@@ -47,7 +45,6 @@ All notable changes to this project will be documented in this file.
 #### [1.4.1](https://github.com/AlecRust/gphotos-takeout-repair/releases/tag/1.4.1)
 
 > 24 August 2024
-
 - Bump dependencies [`b749093`](https://github.com/AlecRust/gphotos-takeout-repair/commit/b749093193859785b9d289ae7c02d5628d08f94b)
 - Upgrade ESLint to v9 [`03b382e`](https://github.com/AlecRust/gphotos-takeout-repair/commit/03b382e6880e8d270c0d58b7c0a041172bb866b5)
 - Improve code readability [`06017c4`](https://github.com/AlecRust/gphotos-takeout-repair/commit/06017c4f1ee180ea11aebfcea5ac5812f373d81e)
@@ -58,7 +55,6 @@ All notable changes to this project will be documented in this file.
 #### [1.4.0](https://github.com/AlecRust/gphotos-takeout-repair/releases/tag/1.4.0)
 
 > 4 February 2024
-
 - Add eslint-plugin-node [`09858c7`](https://github.com/AlecRust/gphotos-takeout-repair/commit/09858c7d11ab875d7fd5a74242652aae46855cb5)
 - Fix test file being published [`3100864`](https://github.com/AlecRust/gphotos-takeout-repair/commit/31008647fe4ea29546644f973080cdddbcfa148d)
 - Add @jest/globals as dev dependency [`a66228c`](https://github.com/AlecRust/gphotos-takeout-repair/commit/a66228ca14a6d95f2d58b851ce6f67c4d3ac32cf)
@@ -92,7 +88,6 @@ All notable changes to this project will be documented in this file.
 #### [1.3.1](https://github.com/AlecRust/gphotos-takeout-repair/releases/tag/1.3.1)
 
 > 28 October 2023
-
 - Improve timestamp setting [`7aa4713`](https://github.com/AlecRust/gphotos-takeout-repair/commit/7aa4713c54b2a1005c718fc16840b8b388f29594)
 - Refactor utility functions to simplify [`5a067db`](https://github.com/AlecRust/gphotos-takeout-repair/commit/5a067db96a98401d5830e8fb736f7cf76a78d104)
 - Tidy tests [`667913c`](https://github.com/AlecRust/gphotos-takeout-repair/commit/667913ccaa48c8f489d825623f6e56330fd9d3da)
@@ -103,7 +98,6 @@ All notable changes to this project will be documented in this file.
 #### [1.3.0](https://github.com/AlecRust/gphotos-takeout-repair/releases/tag/1.3.0)
 
 > 28 October 2023
-
 - Improve candidate building to better handle filename periods [`9c6d212`](https://github.com/AlecRust/gphotos-takeout-repair/commit/9c6d2123fdcccacb07587be7135ffb131ba57579)
 - Exclude JSON files from candidates array [`21eb820`](https://github.com/AlecRust/gphotos-takeout-repair/commit/21eb820e97d80722be76bdb97f5bccf8aecd1132)
 - Reference another related project [`5dc4e22`](https://github.com/AlecRust/gphotos-takeout-repair/commit/5dc4e223216e0eacc2e2a635674446219f62b722)
@@ -111,7 +105,6 @@ All notable changes to this project will be documented in this file.
 #### [1.2.0](https://github.com/AlecRust/gphotos-takeout-repair/releases/tag/1.2.0)
 
 > 26 October 2023
-
 - Add mismatched extensions test case [`ec474b6`](https://github.com/AlecRust/gphotos-takeout-repair/commit/ec474b67410796d4302ea8210c711c0fbf3df5c4)
 - Bump eslint-plugin-jest version [`6423eb4`](https://github.com/AlecRust/gphotos-takeout-repair/commit/6423eb462eb9ec46a0028b129f6ae559137434f8)
 - Handle ampersands [`7a4c204`](https://github.com/AlecRust/gphotos-takeout-repair/commit/7a4c2041e9ff62e889b1e28f66c98c07b259a6d9)
@@ -120,7 +113,6 @@ All notable changes to this project will be documented in this file.
 #### [1.1.2](https://github.com/AlecRust/gphotos-takeout-repair/releases/tag/1.1.2)
 
 > 26 October 2023
-
 - Fix tests on Node.js v20 [`e91f7ef`](https://github.com/AlecRust/gphotos-takeout-repair/commit/e91f7ef19f0a47a573dfe83bc8c0971600c3bac4)
 - Remove "latest" Node version from test matrix [`7975930`](https://github.com/AlecRust/gphotos-takeout-repair/commit/79759304573eeb72c094cc7f0f4ee182b6c489d9)
 - Refactor to ESM [`812c855`](https://github.com/AlecRust/gphotos-takeout-repair/commit/812c85578ec10c631a79341c3fb94809bf913f62)
@@ -134,7 +126,6 @@ All notable changes to this project will be documented in this file.
 #### [1.1.1](https://github.com/AlecRust/gphotos-takeout-repair/releases/tag/1.1.1)
 
 > 26 October 2023
-
 - Set "repository" in package.json [`d857f3e`](https://github.com/AlecRust/gphotos-takeout-repair/commit/d857f3e553fc68d572fbe31087d2ee2b005e6e49)
 - Create LICENSE [`6199a5d`](https://github.com/AlecRust/gphotos-takeout-repair/commit/6199a5dd01da41a508a8e7019880cae5996e2750)
 - Set MIT license [`b75780d`](https://github.com/AlecRust/gphotos-takeout-repair/commit/b75780d37524481a20b958e12ca1e0e27eee6df0)
@@ -145,7 +136,6 @@ All notable changes to this project will be documented in this file.
 #### [1.1.0](https://github.com/AlecRust/gphotos-takeout-repair/releases/tag/1.1.0)
 
 > 26 October 2023
-
 - Move timestamp debug log behind new --verbose option [`2cf9aab`](https://github.com/AlecRust/gphotos-takeout-repair/commit/2cf9aab43035ed5e6b52dbda1bc9078d404cfbf1)
 - Add "retains non-image filenames" test case [`0d35a05`](https://github.com/AlecRust/gphotos-takeout-repair/commit/0d35a054c826d6b2b56c1a8c6f268a735a7a8691)
 - Improve handling of different file types with similar filenames [`d59d27c`](https://github.com/AlecRust/gphotos-takeout-repair/commit/d59d27cd741935d0ee7c1d9300fee2174fc51b00)
@@ -157,7 +147,6 @@ All notable changes to this project will be documented in this file.
 #### [1.0.2](https://github.com/AlecRust/gphotos-takeout-repair/releases/tag/1.0.2)
 
 > 25 October 2023
-
 - Refactor [`0169d9e`](https://github.com/AlecRust/gphotos-takeout-repair/commit/0169d9e54731fa382cdb704d30df746661613c91)
 - Tidy [`8581a68`](https://github.com/AlecRust/gphotos-takeout-repair/commit/8581a68d132de8f8e43b3a8f22f9267ecb13c601)
 - Improve log output [`2259270`](https://github.com/AlecRust/gphotos-takeout-repair/commit/2259270a11f63e7c8c2c9ad3047234117e70087a)
@@ -165,7 +154,6 @@ All notable changes to this project will be documented in this file.
 #### [1.0.1](https://github.com/AlecRust/gphotos-takeout-repair/releases/tag/1.0.1)
 
 > 25 October 2023
-
 - Add shebang [`2e82769`](https://github.com/AlecRust/gphotos-takeout-repair/commit/2e82769fa3a5583fc213b51a777a67c8f8e99e6f)
 - Tidy README [`a4c7ea0`](https://github.com/AlecRust/gphotos-takeout-repair/commit/a4c7ea04d6ab3c5063728042c4beb55841d27f3e)
 - Fix typo [`f7876b2`](https://github.com/AlecRust/gphotos-takeout-repair/commit/f7876b2de2f1ac48bcad5015e9e439e42256a892)
@@ -175,5 +163,4 @@ All notable changes to this project will be documented in this file.
 #### [1.0.0](https://github.com/AlecRust/gphotos-takeout-repair/releases/tag/1.0.0)
 
 > 25 October 2023
-
 - Initial commit [`37e0a04`](https://github.com/AlecRust/gphotos-takeout-repair/commit/37e0a04a837a34d76e17244ed82c0a589d1b242d)

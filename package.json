@@ -19,9 +19,9 @@
     "exif",
     "export"
   ],
-  "packageManager": "npm@11.21.0",
+  "packageManager": "npm@12.2.1",
   "engines": {
-    "node": ">=20.19.0"
+    "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
   },
   "scripts": {
     "start": "node src/index.js",
@@ -37,12 +37,11 @@
     "yargs": "^18.2.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.15",
+    "@biomejs/biome": "2.6.2",
     "husky": "^9.1.7",
     "lint-staged": "^17.6.0",
-    "mock-fs": "^5.5.0",
-    "release-it": "^19.2.4",
-    "vitest": "^4.1.11"
+    "release-it": "^21.1.1",
+    "vitest": "^5.0.5"
   },
   "lint-staged": {
     "*": "biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"

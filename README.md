@@ -31,7 +31,7 @@ The output in the destination directory will be:
 
 ## Requirements
 
-- Node.js >= 20.19.0
+- Node.js 22.22.2+, 24.15.0+, or 26+
 
 ## Install
 
